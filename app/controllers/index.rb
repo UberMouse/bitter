@@ -22,5 +22,7 @@ post '/login' do
 end
 
 get '/profile' do
+  @username = 'ubermouse'
+  @tweets = ['trololol', 'my tweets are dum', 'lol']
   erb :profile
 end
