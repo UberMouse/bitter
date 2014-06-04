@@ -1,23 +1,16 @@
-<div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, <%= em("world!") %></p>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
-</div>
+<h1>Welcome to Bitter</h1>
+<h2>Register to Piss</h2>
+<form action="/create" method="post">
+  <p>name <input type="text" name="name">
+  <p>email <input type="text" name="email">
+  <p>user name <input type="text" name="user_name">
+  <p>password <input type="text" name="password">
+  <input type="submit" value="register">
+</form>
+<br>
+<form action="/login" method="post">
+  <p>user name <input type="text" name="user_name">
+  <p>password <input type="text" name="password">
+  <input type="submit" value="login">
+</form>
