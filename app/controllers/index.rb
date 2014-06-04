@@ -1,14 +1,16 @@
+enable :sessions
+
 get '/' do
   # Look in app/views/index.erb
   erb :index
 end
 
 post '/create' do
-  @user = User.new(name: params[:name],
+  @user = User.create(name: params[:name],
                   email: params[:email],
                   user_name: params[:user_name],
                   password: params[:password])
-  @user.save
+  session["id"] = @user.id
   erb :profile
 end
 
@@ -17,6 +19,7 @@ post '/login' do
   if @user == nil
     redirect to '/'
   else
+    session["id"] = @user.id
     redirect to '/profile'
   end
 end
