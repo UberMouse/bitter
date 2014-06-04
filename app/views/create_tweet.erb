@@ -1,0 +1,19 @@
+<form method="post">
+  <table>
+    <tr>
+      <td>
+        <span><%= @error %></span>
+      </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="tweet">Enter tweet: <textarea rows="5" cols="20" name="tweet" ><%= @tweet %></textarea></label>
+        </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="submit" value="Submit"/>
+      </td>
+    </tr>
+  </table>
+</form>
