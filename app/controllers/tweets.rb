@@ -15,3 +15,8 @@ post '/tweet' do
     erb :create_tweet
   end
 end
+
+get '/retweet/:tweet_id' do
+  tweet = Tweet.find(params['tweet_id'])
+  @user.tweets.create(text: tweet.text, retweet_id: tweet.id)
+end

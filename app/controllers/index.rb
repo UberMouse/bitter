@@ -1,14 +1,6 @@
 get '/' do
   if authorized?
-    honchos = @user.honchos
-    honcho_tweets = honchos.map{|h| h.tweets}.flatten
-
-    @tweets = []
-    until @tweets.length == 30
-      tweet = honcho_tweets.sample
-      tweet_deets = [tweet.text, tweet.user.user_name, tweet.created_at, tweet.id]
-      @tweets << tweet_deets unless @tweets.include? tweet_deets
-    end
+    @tweets = @user.get_honcho_tweets
     erb :index
   else
     erb :login
@@ -39,9 +31,8 @@ get '/users/:user_name', :auth => :user do
   user = User.find_by_user_name(params[:user_name])
   @username = user.user_name
   @tweets = Array(user.tweets.map{|t|t.text})
+  @gravatar_url = @user.gravatar_url
 
-  gravatar_hash = Digest::MD5.hexdigest(user.email.chomp.downcase)
-  @gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_hash}?s=64&d=mm"
   erb :profile
 end
 

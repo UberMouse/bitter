@@ -7,7 +7,7 @@ require 'faker'
               password: "password")
 end
 
-User.create(user_name: 'ubermouse', password: '')
+User.create(user_name: 'ubermouse', password: '', email: 'ubermouse894@gmail.com')
 
 users = User.all
 
