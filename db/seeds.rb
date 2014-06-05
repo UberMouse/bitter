@@ -15,10 +15,10 @@ users = User.all
   users.sample.tweets.create(text: "#{Faker::Company.bs}, #{Faker::Company.bs}, #{Faker::Company.bs}")
 end
 
-50.times do
+100.times do
   user1 = users.sample
   user2 = users.sample
-  if [1, 2].sample == 1
+  if [*1..10].sample > 5
     user1.add_stalker user2
   else
     user1.add_honcho user2

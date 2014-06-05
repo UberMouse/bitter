@@ -30,8 +30,27 @@ post '/login' do
   else
     session['id'] = @user.id
     @id  = @user.id
-    redirect to '/profile/:id'
+    redirect to "/users/#{@user.user_name}"
   end
+end
+
+get '/users/:user_name', :auth => :user do
+  user = User.find_by_user_name(params[:user_name])
+  @username = user.user_name
+  @tweets = Array(user.tweets.map{|t|t.text})
+  erb :profile
+end
+
+get '/users/:user_name/stalkers' do
+  @header = "Stalkers"
+  @users = @user.stalkers
+  erb :see_user_list
+end
+
+get '/users/:user_name/honchos' do
+  @header = "Honchos"
+  @users = @user.honchos
+  erb :see_user_list
 end
 
 get '/logout' do

@@ -5,6 +5,11 @@
     <li><%= tweet %></li>
     <% end %>
 </ul>
+
+<div>  <a href="/users/<%=@username%>/honchos"><p>Honchos:<%= @user.honchos.count %></p></a> </div>
+
+<div>  <a href="/users/<%=@username%>/stalkers"><p>Stalkers:<%= @user.stalkers.count %></p></a> </div>
+
 <form action="/logout" method="post">
   <input type="submit" value="Logout">
 </form>
