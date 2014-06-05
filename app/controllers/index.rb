@@ -38,3 +38,8 @@ get '/profile' do
 
   erb :profile
 end
+
+post '/logout' do
+  session[:id] = nil
+  redirect to '/'
+end
