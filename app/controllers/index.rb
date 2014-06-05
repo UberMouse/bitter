@@ -1,6 +1,17 @@
 get '/' do
-  # Look in app/views/index.erb
-  erb :index
+  if authorized?
+    honchos = @user.honchos
+    honcho_tweets = honchos.map{|h| h.tweets}.flatten
+
+    @tweets = []
+    until @tweets.length == 30
+      tweet_text = honcho_tweets.sample.text
+      @tweets << tweet_text unless @tweets.include? tweet_text
+    end
+    erb :index
+  else
+    erb :login
+  end
 end
 
 post '/create' do
@@ -23,24 +34,7 @@ post '/login' do
   end
 end
 
-get '/profile/:id', :auth => :user do
-  @username = @user.user_name
-  @tweets = Array(@user.tweets.map{|t|t.text})
-
-  erb :profile
-end
-
-get '/profile/followers' do
-  @followers = @user.stalkers
-  erb :see_followers
-end
-
-get '/profile/following' do
-  @following = @user.honchos
-  erb :see_following
-end
-
-post '/logout' do
+get '/logout' do
   session[:id] = nil
   redirect to '/'
 end

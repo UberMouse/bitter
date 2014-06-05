@@ -44,7 +44,7 @@ configure do
 end
 
 register do
-  def auth (type)
+  def auth(type)
     condition do
       redirect '/' unless authorized?
     end
