@@ -1,0 +1,6 @@
+<h3>Following</h3>
+<ul>
+    <% @following.each do |following| %>
+    <li><a href = '/profile/:id'><%= following.user_name %></a></li>
+    <% end %>
+</ul>

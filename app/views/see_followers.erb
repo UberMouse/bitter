@@ -1,1 +1,8 @@
-<p> <%= @followers %> </p>
+<h3>Followers</h3>
+<ul>
+    <% @followers.each do |follower| %>
+    <li><%= follower.name %></li>
+    <% end %>
+</ul>
+
+<a href='/profile'>Profile</a>
