@@ -1,3 +1,13 @@
+before do
+  if session['id'].present?
+    unless User.exists? id: session['id']
+      session['id'] = nil
+      return
+    end
+    @user = User.find(session['id'])
+  end
+end
+
 get '/' do
   # Look in app/views/index.erb
   erb :index
@@ -9,7 +19,7 @@ post '/create' do
                   user_name: params[:user_name],
                   password: params[:password])
   session["id"] = @user.id
-  erb :profile
+  redirect to '/profile'
 end
 
 post '/login' do
@@ -23,7 +33,8 @@ post '/login' do
 end
 
 get '/profile' do
-  @username = 'ubermouse'
-  @tweets = ['trololol', 'my tweets are dum', 'lol']
+  @username = @user.user_name
+  @tweets = Array(@user.tweets.map{|t|t.text})
+
   erb :profile
 end
