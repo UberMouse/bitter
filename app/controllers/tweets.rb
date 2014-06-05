@@ -3,10 +3,9 @@ get '/tweet' do
 end
 
 post '/tweet' do
-  user_id = 1
-  tweet = params[:tweet]
-
-  tweet = Tweet.create(text: tweet, user_id: user_id)
+  user = User.find(session['id'])
+  tweet = Tweet.create(text: params[:tweet])
+  user.tweets << tweet
 
   if tweet.valid?
     erb :tweet_created
