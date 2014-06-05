@@ -18,11 +18,12 @@ post '/login' do
     redirect to '/'
   else
     session['id'] = @user.id
-    redirect to '/profile'
+    @id  = @user.id
+    redirect to '/profile/:id'
   end
 end
 
-get '/profile', :auth => :user do
+get '/profile/:id', :auth => :user do
   @username = @user.user_name
   @tweets = Array(@user.tweets.map{|t|t.text})
 
@@ -30,12 +31,12 @@ get '/profile', :auth => :user do
 end
 
 get '/profile/followers' do
-  @followers = Array(@user.followers.map{|f|f.follower_id})
+  @followers = @user.stalkers
   erb :see_followers
 end
 
 get '/profile/following' do
-  @following = Array(@user.followers.map{|f|f.following_id})
+  @following = @user.honchos
   erb :see_following
 end
 
