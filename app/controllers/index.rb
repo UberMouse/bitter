@@ -5,8 +5,9 @@ get '/' do
 
     @tweets = []
     until @tweets.length == 30
-      tweet_text = honcho_tweets.sample.text
-      @tweets << tweet_text unless @tweets.include? tweet_text
+      tweet = honcho_tweets.sample
+      tweet_deets = [tweet.text, tweet.user.user_name, tweet.created_at, tweet.id]
+      @tweets << tweet_deets unless @tweets.include? tweet_deets
     end
     erb :index
   else
