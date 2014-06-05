@@ -1,7 +1,8 @@
+<h3>Followers</h3>
 <ul>
     <% @followers.each do |follower| %>
-    <li><%= follower.user_name %></li>
+    <li><%= follower.name %></li>
     <% end %>
 </ul>
 
-<a href='/'>Profile</a>
+<a href='/profile'>Profile</a>
