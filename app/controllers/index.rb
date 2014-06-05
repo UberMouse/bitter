@@ -38,6 +38,9 @@ get '/users/:user_name', :auth => :user do
   user = User.find_by_user_name(params[:user_name])
   @username = user.user_name
   @tweets = Array(user.tweets.map{|t|t.text})
+
+  gravatar_hash = Digest::MD5.hexdigest(user.email.chomp.downcase)
+  @gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_hash}?s=64&d=mm"
   erb :profile
 end
 

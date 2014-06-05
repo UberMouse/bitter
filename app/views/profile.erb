@@ -1,5 +1,5 @@
 <h1><%= @username %></h1>
-<img src="https://secure.gravatar.com/avatar/16e22fa9ea2c4177aa9a0e9fda9dd3bf?s=64&d=mm" />
+<img src="<%= @gravatar_url %>" />
 <ul>
     <% @tweets.each do |tweet| %>
     <li><%= tweet %></li>
