@@ -29,6 +29,11 @@ get '/profile', :auth => :user do
   erb :profile
 end
 
+get '/profile/followers' do
+  @followers = Array(@user.followers.map{|f|f.follower_id})
+  erb :see_followers
+end
+
 post '/logout' do
   session[:id] = nil
   redirect to '/'
