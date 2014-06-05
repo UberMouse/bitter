@@ -1,16 +1,3 @@
-
-<h1>Welcome to Bitter</h1>
-<h2>Register to Piss</h2>
-<form action="/create" method="post">
-  <p>name <input type="text" name="name">
-  <p>email <input type="text" name="email">
-  <p>user name <input type="text" name="user_name">
-  <p>password <input type="password" name="password">
-  <input type="submit" value="register">
-</form>
-<br>
-<form action="/login" method="post">
-  <p>user name <input type="text" name="user_name">
-  <p>password <input type="password" name="password">
-  <input type="submit" value="login">
-</form>
+<% @tweets.each do |tweet| %>
+    <p><%= tweet %></p>
+<% end %>
