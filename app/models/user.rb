@@ -9,6 +9,14 @@ class User < ActiveRecord::Base
     Honcho.create(user_id: id, honcho_id: user.id)
   end
 
+  def remove_stalker(user)
+    Stalker.where(user_id: id, stalker_id: user.id).first.delete
+  end
+
+  def unhoncho(user)
+    Honcho.where(user_id: id, honcho_id: user.id).first.delete
+  end
+
   def stalkers
     stalkers = Stalker.where(user_id: id)
     stalkers.map do |stalker|
