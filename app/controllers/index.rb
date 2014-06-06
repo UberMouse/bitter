@@ -30,27 +30,19 @@ end
 get '/users/:user_name', :auth => :user do
   user = User.find_by_user_name(params[:user_name])
   @username = user.user_name
-  @tweets = Array(user.tweets.map{|t|t.text})
-  @gravatar_url = @user.gravatar_url
+  @tweets = Array(user.tweets.sort_by {|t| t.created_at}.reverse.map{|t|t.text})
+  @gravatar_url = user.gravatar_url
   @honcho_count = user.honchos.length
   @stalkers_count = user.stalkers.length
+  @userid = user.id
+  @stalk_button_message = @user.honchos.include?(user) ? 'Unstalk' : 'Stalk'
+  if user.id == @user.id
+    @stalk_button_message = ''
+  end
 
   erb :profile
 end
 
-get '/users/:user_name/stalkers' do
-  user = User.find_by_user_name(params[:user_name])
-  @header = "Stalkers"
-  @users = user.stalkers
-  erb :see_user_list
-end
-
-get '/users/:user_name/honchos' do
-  user = User.find_by_user_name(params[:user_name])
-  @header = "Honchos"
-  @users = user.honchos
-  erb :see_user_list
-end
 
 get '/logout' do
   session[:id] = nil
