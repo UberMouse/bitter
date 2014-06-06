@@ -1,14 +1,6 @@
 get '/' do
   if authorized?
-    honchos = @user.honchos
-    honcho_tweets = honchos.map{|h| h.tweets}.flatten
-
-    @tweets = []
-    until @tweets.length == 30
-      tweet = honcho_tweets.sample
-      tweet_deets = [tweet.text, tweet.user.user_name, tweet.created_at, tweet.id]
-      @tweets << tweet_deets unless @tweets.include? tweet_deets
-    end
+    @tweets = @user.get_honcho_tweets
     erb :index
   else
     erb :login
@@ -39,18 +31,24 @@ get '/users/:user_name', :auth => :user do
   user = User.find_by_user_name(params[:user_name])
   @username = user.user_name
   @tweets = Array(user.tweets.map{|t|t.text})
+  @gravatar_url = @user.gravatar_url
+  @honcho_count = user.honchos.length
+  @stalkers_count = user.stalkers.length
+
   erb :profile
 end
 
 get '/users/:user_name/stalkers' do
+  user = User.find_by_user_name(params[:user_name])
   @header = "Stalkers"
-  @users = @user.stalkers
+  @users = user.stalkers
   erb :see_user_list
 end
 
 get '/users/:user_name/honchos' do
+  user = User.find_by_user_name(params[:user_name])
   @header = "Honchos"
-  @users = @user.honchos
+  @users = user.honchos
   erb :see_user_list
 end
 

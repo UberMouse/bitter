@@ -33,4 +33,21 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
+  def get_honcho_tweets
+    honcho_tweets = honchos.map{|h| h.tweets}.flatten
+
+    tweets = []
+    until tweets.length == [honcho_tweets.length-1, 30].min
+      tweet = honcho_tweets.sample
+      tweet_deets = [tweet.text, tweet.user.user_name, tweet.created_at, tweet.id]
+      tweets << tweet_deets unless tweets.include? tweet_deets
+    end
+    tweets
+  end
+
+  def gravatar_url
+    gravatar_hash = Digest::MD5.hexdigest(email.chomp.downcase)
+    "https://secure.gravatar.com/avatar/#{gravatar_hash}?s=64&d=mm"
+  end
 end
