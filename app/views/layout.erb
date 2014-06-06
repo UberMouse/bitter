@@ -20,9 +20,12 @@
   <title></title>
 </head>
 <body>
+<div id="header">
+  <img src="/images/lawnmowerman.png" height="100" width="100" class="image">
   <h1 class="welcome">Welcome to <a href='/'>Shitter</a></h1>
-    <h2 class="tagline"> Because everybody loves <%= Faker::Company.catch_phrase.downcase %></h2>
-  <div id="nav">
+</div>
+<h2 class="tagline"> Because everybody loves <%= Faker::Company.catch_phrase.downcase %></h2>
+<div id="nav">
     <marquee>
       <ul>
         <% if authorized? %>

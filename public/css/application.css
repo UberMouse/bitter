@@ -63,6 +63,13 @@ body {
     100% {background-color: black}
 }
 
+.image {
+   margin-left: 37%;
+   margin-right: auto;
+   width: 25%;
+   margin-top: 10px;
+}
+
 #nav {
     -webkit-animation: navbackgroundcolors 5s steps(100, start) infinite;
 }
