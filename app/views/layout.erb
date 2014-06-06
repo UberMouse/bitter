@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<% require 'faker' %>
 <html lang="en">
 <head>
   <!--
@@ -11,6 +12,7 @@
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
+  <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
@@ -18,13 +20,19 @@
   <title></title>
 </head>
 <body>
+  <h1 class="welcome">Welcome to <a href='/'>Bitter</a></h1>
+    <h2 class="tagline"> Because everybody loves <%= Faker::Company.catch_phrase.downcase %></h2>
   <div id="nav">
-    <ul>
-      <li><a href='/'> Bitter </a></li>
-      <li><a href='/users/<%= @user.user_name %>'> Profile </a></li>
-      <li><a href='/tweet'> Tweet </a></li>
-      <li><a href='/logout'>Logout</a></li>
-    </ul>
+    <marquee>
+      <ul>
+        <li><a href='/'> Bitter </a></li>
+        <% if authorized? %>
+          <li><a href='/users/<%= @user.user_name %>'> Profile </a></li>
+          <li><a href='/tweet'> Tweet </a></li>
+          <li><a href='/logout'>Logout</a></li>
+          <% end %>
+      </ul>
+    </marquee>
   </div>
   <div class='container'>
     <%= yield %>
