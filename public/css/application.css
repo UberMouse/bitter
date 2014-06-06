@@ -8,10 +8,13 @@ body { font-family: 'Audiowide', cursive; }
 }
 
 .welcome, .tagline { text-align: center; }
+.error { color: red; }
 
+.stats {text-align: right}
 th {
   text-align: left;
 }
+
 
 #nav ul {
     background: #000000;
@@ -25,3 +28,5 @@ th {
     margin: 5px;
     display: inline;
 }
+
+#nav li a:hover { color: red; }
