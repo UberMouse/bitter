@@ -8,3 +8,16 @@
 th {
   text-align: left;
 }
+
+#nav ul {
+    background: #000000;
+    color: white;
+    list-style-type: none;
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+}
+#nav li {
+    margin: 5px;
+    display: inline;
+}
