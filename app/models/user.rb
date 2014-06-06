@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
+  # has_many :tweets
   has_many :tweets
+  has_many :favorites
+  has_many :favorited_tweets, through: :favorites, source: :tweet
 
   def add_stalker(user)
     Stalker.create(user_id: id, stalker_id: user.id)
