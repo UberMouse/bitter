@@ -22,3 +22,9 @@ get '/retweet/:tweet_id' do
 
   redirect to request.referer
 end
+
+get '/favorite/:tweet_id' do
+  tweet = Tweet.find(params[:tweet_id])
+  @user.favorites.create(user_id: @user.id, tweet_id: tweet.id)
+  redirect to request.referer
+end

@@ -1,2 +1,5 @@
-<p><%= "#{text} #{created_at}"%><a href='/users/<%=user_name%>'> <%="#{user_name}"%></a></p>
+<p><%= "#{text} #{created_at}"%></p>
+<a href='/users/<%=user_name%>'> <%="#{user_name}"%></a>
+<br/>
 <a href='/retweet/<%= tweet_id %>'>Retweet</a>
+<a href='/favorite/<%= tweet_id %>'>Favorite</a>

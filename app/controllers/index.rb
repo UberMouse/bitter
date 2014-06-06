@@ -48,3 +48,8 @@ get '/logout' do
   session[:id] = nil
   redirect to '/'
 end
+
+get '/favorites' do
+  @favorites = @user.favorited_tweets.map(&:get_presentation_deets)
+  erb :favorites
+end
