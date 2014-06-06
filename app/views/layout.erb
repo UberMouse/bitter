@@ -20,12 +20,11 @@
   <title></title>
 </head>
 <body>
-  <h1 class="welcome">Welcome to <a href='/'>Bitter</a></h1>
+  <h1 class="welcome">Welcome to <a href='/'>Shitter</a></h1>
     <h2 class="tagline"> Because everybody loves <%= Faker::Company.catch_phrase.downcase %></h2>
   <div id="nav">
     <marquee>
       <ul>
-        <li><a href='/'> Bitter </a></li>
         <% if authorized? %>
           <li><a href='/users/<%= @user.user_name %>'> Profile </a></li>
           <li><a href='/tweet'> Tweet </a></li>
@@ -34,7 +33,7 @@
       </ul>
     </marquee>
   </div>
-  <div class='container'>
+  <div class='container flash_colors'>
     <%= yield %>
   </div>
 </body>

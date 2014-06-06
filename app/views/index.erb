@@ -1,5 +1,3 @@
-
-
 <% @tweets.each do |tweet| %>
     <%= erb :'_tweet', :locals => { text: tweet[0], user_name: tweet[1], created_at: tweet[2], tweet_id: tweet[3] } %>
 <% end %>

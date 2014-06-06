@@ -15,10 +15,6 @@ th {
   text-align: left;
 }
 
-.blink {
-    -webkit-animation: trollcolors 1s steps(5, start) infinite;
-}
-
 @-webkit-keyframes trollcolors {
     20% {color: black}
     40% {color: red}
@@ -31,14 +27,27 @@ body {
     -webkit-animation: backgroundcolors 5s steps(100, start) infinite;
 }
 
+.flash_colors {
+    -webkit-animation: trollcolors 1s steps(5, start) infinite;
+}
+
 @-webkit-keyframes backgroundcolors {
     0% {background-color: white}
     50% {background-color: black}
     100% {background-color: white}
 }
 
+@-webkit-keyframes navbackgroundcolors {
+    0% {background-color: black}
+    50% {background-color: white}
+    100% {background-color: black}
+}
+
+#nav {
+    -webkit-animation: navbackgroundcolors 5s steps(100, start) infinite;
+}
+
 #nav ul {
-    background: #000000;
     color: white;
     list-style-type: none;
     margin: 0px;
@@ -50,4 +59,4 @@ body {
     display: inline;
 }
 
-#nav li a:hover { color: red; }
+a:hover { color: red; }
