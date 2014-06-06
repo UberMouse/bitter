@@ -1,3 +1,5 @@
+body { font-family: 'Audiowide', cursive; }
+
 .container {
   margin: 20px auto;
   width: 600px;
@@ -5,9 +7,14 @@
   border: 1px dotted black;
 }
 
+.welcome, .tagline { text-align: center; }
+.error { color: red; }
+
+.stats {text-align: right}
 th {
   text-align: left;
 }
+
 
 #nav ul {
     background: #000000;
@@ -21,3 +28,5 @@ th {
     margin: 5px;
     display: inline;
 }
+
+#nav li a:hover { color: red; }

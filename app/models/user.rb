@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
     tweets = []
     until tweets.length == [honcho_tweets.length-1, 30].min
       tweet = honcho_tweets.sample
-      tweet_deets = [tweet.text, tweet.user.user_name, tweet.created_at, tweet.id]
+      tweet_deets = tweet.get_presentation_deets
       tweets << tweet_deets unless tweets.include? tweet_deets
     end
     tweets

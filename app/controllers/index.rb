@@ -27,11 +27,11 @@ post '/login' do
   end
 end
 
-get '/users/:user_name', :auth => :user do
+get '/users/:user_name' do
   user = User.find_by_user_name(params[:user_name])
   @username = user.user_name
-  @tweets = Array(user.tweets.sort_by {|t| t.created_at}.reverse.map{|t|t.text})
-  @gravatar_url = user.gravatar_url
+  @tweets = user.tweets.map(&:get_presentation_deets)
+  @gravatar_url = @user.gravatar_url
   @honcho_count = user.honchos.length
   @stalkers_count = user.stalkers.length
   @userid = user.id
