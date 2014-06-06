@@ -5,7 +5,7 @@
   </br>
   <p><a href="/users/<%=@username%>/stalkers" class="btn">Stalkers: <%= @stalkers_count %></p></a>
 </br>
-  <a href="/stalk/<%= @userid %>" class="usbtn"><%= @stalk_button_message %></a>
+  <a href="/stalk/<%= @userid %>"><%= @stalk_button_message %></a>
 </div>
 
 <% @tweets.each do |tweet| %>
