@@ -1,14 +1,14 @@
 <h1><%= @username %></h1>
-<img src="https://secure.gravatar.com/avatar/16e22fa9ea2c4177aa9a0e9fda9dd3bf?s=64&d=mm" />
+<img src="<%= @gravatar_url %>" />
 <ul>
     <% @tweets.each do |tweet| %>
     <li><%= tweet %></li>
     <% end %>
 </ul>
 
-<div>  <a href="/users/<%=@username%>/honchos"><p>Honchos:<%= @user.honchos.count %></p></a> </div>
+<div>  <a href="/users/<%=@username%>/honchos"><p>Honchos:<%= @honcho_count %></p></a> </div>
 
-<div>  <a href="/users/<%=@username%>/stalkers"><p>Stalkers:<%= @user.stalkers.count %></p></a> </div>
+<div>  <a href="/users/<%=@username%>/stalkers"><p>Stalkers:<%= @stalkers_count %></p></a> </div>
 
 <form action="/logout" method="post">
   <input type="submit" value="Logout">

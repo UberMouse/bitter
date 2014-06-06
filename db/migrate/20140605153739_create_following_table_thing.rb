@@ -10,9 +10,13 @@ class CreateFollowingTableThing < ActiveRecord::Migration
       t.integer :stalker_id
     end
 
+    add_index :stalkers, [:user_id, :stalker_id], :unique => true
+
     create_table :honchos do |t|
       t.belongs_to :user
       t.integer :honcho_id
     end
+
+    add_index :honchos, [:user_id, :honcho_id], :unique => true
   end
 end
