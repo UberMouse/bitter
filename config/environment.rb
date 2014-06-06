@@ -19,6 +19,7 @@ require 'pathname'
 
 require 'pg'
 require 'active_record'
+require 'active_support'
 require 'logger'
 
 require 'sinatra'

@@ -9,6 +9,14 @@ class User < ActiveRecord::Base
     Honcho.create(user_id: id, honcho_id: user.id)
   end
 
+  def remove_stalker(user)
+    Stalker.where(user_id: id, stalker_id: user.id).first.delete
+  end
+
+  def unhoncho(user)
+    Honcho.where(user_id: id, honcho_id: user.id).first.delete
+  end
+
   def stalkers
     stalkers = Stalker.where(user_id: id)
     stalkers.map do |stalker|
@@ -32,5 +40,22 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def get_honcho_tweets
+    honcho_tweets = honchos.map{|h| h.tweets}.flatten
+
+    tweets = []
+    until tweets.length == [honcho_tweets.length-1, 30].min
+      tweet = honcho_tweets.sample
+      tweet_deets = tweet.get_presentation_deets
+      tweets << tweet_deets unless tweets.include? tweet_deets
+    end
+    tweets
+  end
+
+  def gravatar_url
+    gravatar_hash = Digest::MD5.hexdigest(email.chomp.downcase)
+    "https://secure.gravatar.com/avatar/#{gravatar_hash}?s=64&d=mm"
   end
 end
